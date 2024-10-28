@@ -21,7 +21,8 @@ class App extends Component {
       menus:[ //배열 3개 생성하기 LIST / 배열을 nav에 전달
         {id:1, title:'HTML', desc:'Hypertext Markup Language'},
         {id:2, title:'CSS', desc:'CSS for design'},
-        {id:3, title:'Javascript', desc:'Javascript for interaction'}
+        {id:3, title:'Javascript', desc:'Javascript for interaction'},
+        {id:4, title:'React', desc:'Single Page Application'}
       ]
     };
   }
@@ -37,7 +38,7 @@ class App extends Component {
     let _article = null;
     if(this.state.mode === 'welcome'){ //.
       let _data = this.state.welcome;
-      _article = <Article data={_data} desc={_desc} mode={this.state.mode}></Article>;
+      _article = <Article data={_data} mode={this.state.mode}></Article>;
     }else if(this.state.mode === 'read'){ //0번째안에 타이틀이 출력되도록
       
       let _data = this.getReadArticle();
