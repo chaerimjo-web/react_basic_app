@@ -19,10 +19,9 @@ class App extends Component {
       subject:{ title : 'React', desc : 'Single page Application'},
       welcome:{title : 'Welcome', desc:'Welcom to React'},
       menus:[ //배열 3개 생성하기 LIST / 배열을 nav에 전달
-        {id:1, title:'HTML', desc:'Hypertext Markup Language'},
-        {id:2, title:'CSS', desc:'CSS for design'},
-        {id:3, title:'Javascript', desc:'Javascript for interaction'},
-        {id:4, title:'React', desc:'Single Page Application'}
+        {id:1, title:'HTML', desc:'Hypertext Markup Language', difficulty:1},
+        {id:2, title:'CSS', desc:'CSS for design', difficulty:2},
+        {id:3, title:'Javascript', desc:'Javascript for interaction', difficulty:3},
       ]
     };
   }
@@ -33,7 +32,7 @@ class App extends Component {
     return data;
   }
 
-  // 렌더되기 전에 함수 만들기
+  // 렌더되기 전에 함수 만들기 
   getArticles(){
     let _article = null;
     if(this.state.mode === 'welcome'){ //.
@@ -68,10 +67,15 @@ class App extends Component {
 
       let _data = this.getReadArticle(); //제목과 설명을 _data라는 객체로 생성
 
-      _article = <UpdateArticle data={_data} onsubmit={(_title, _desc)=>{
+      _article = <UpdateArticle data={_data} onsubmit={(_title, _desc, _difficulty)=>{
         let _menus = [...this.state.menus];
         const idx = this.state.menus.findIndex(item=> item.id === this.state.selected_id);
-        _menus[idx] = {id:this.state.selected_id, title:_title, desc:_desc} //값 새로수정
+        _menus[idx] = {
+          id:this.state.selected_id, 
+          title:_title, 
+          desc:_desc, 
+          difficulty:_difficulty
+        } //값 새로수정
         this.setState({
           menus:_menus, //새로운 메뉴로 변경
           mode: 'read'

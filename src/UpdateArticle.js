@@ -7,7 +7,8 @@ export default class UpdateArticle extends Component {
     super(props);
     this.state = { //초깃값
       title : this.props.data.title, //부모로부터 받은 타이틀
-      desc : this.props.data.desc
+      desc : this.props.data.desc,
+      difficulty:this.props.data.difficulty
     }
   }
 
@@ -28,7 +29,8 @@ export default class UpdateArticle extends Component {
           //사용자가 입력한 내용 
           this.props.onsubmit(
             this.state.title,
-            this.state.desc
+            this.state.desc,
+            this.state.difficulty
           );
         }}>
           <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
@@ -44,6 +46,10 @@ export default class UpdateArticle extends Component {
              onChange={()=>{}} 값이 변경되면 할 일
             변경된 값 -> 부모에게 전달
             */}
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+            <Form.Label>Difficulty</Form.Label>
+            <Form.Control type="number" name="difficulty" min="0" max="5" value={this.state.difficulty}onChange={this.modifyValue} />
           </Form.Group>
           <Button type="submit" variant="primary" >submit</Button>
         </Form>
