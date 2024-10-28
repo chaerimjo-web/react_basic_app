@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import Myheader from './components/Myheader';
 import Nav from './components/Nav';
@@ -28,14 +27,14 @@ class App extends Component {
   }
 
   getReadArticle(){
-    const idx = this.state.menus.findIndex(item=> item.id == this.state.selected_id); //인덱스구하기
+    const idx = this.state.menus.findIndex(item=> item.id === this.state.selected_id); //인덱스구하기
     let data = this.state.menus[idx]; //id 
     return data;
   }
 
   // 렌더되기 전에 함수 만들기
   getArticles(){
-    let _title, _desc, _article = null;
+    let _article = null;
     if(this.state.mode === 'welcome'){ //.
       let _data = this.state.welcome;
       _article = <Article data={_data} desc={_desc} mode={this.state.mode}></Article>;
@@ -70,7 +69,7 @@ class App extends Component {
 
       _article = <UpdateArticle data={_data} onsubmit={(_title, _desc)=>{
         let _menus = [...this.state.menus];
-        const idx = this.state.menus.findIndex(item=> item.id == this.state.selected_id);
+        const idx = this.state.menus.findIndex(item=> item.id === this.state.selected_id);
         _menus[idx] = {id:this.state.selected_id, title:_title, desc:_desc} //값 새로수정
         this.setState({
           menus:_menus, //새로운 메뉴로 변경
@@ -82,7 +81,7 @@ class App extends Component {
     }else if(this.state.mode === 'delete'){
       if(window.confirm('정말 삭제할까요?')){
         let _menus = [...this.state.menus];
-      let id = this.state.menus.findIndex(item=> item.id == this.state.selected_id);
+      let id = this.state.menus.findIndex(item=> item.id === this.state.selected_id);
       //지우고자하는 인덱스 번호
       _menus.splice(id, 1)
 
